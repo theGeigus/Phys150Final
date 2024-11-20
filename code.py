@@ -29,7 +29,8 @@ while True:
         cp.pixels[0] = ((255, 255, 0))
         print("boom")
         time.sleep(900000000000)
+        
     t += 1
     count += 1
     print(t)
-    time.sleep(.1)
+    time.sleep(1)
