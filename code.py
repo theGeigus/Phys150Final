@@ -10,16 +10,24 @@ count = 0
 volt = 0
 analog_in = AnalogIn(board.A1)
 analog_out = AnalogOut(board.A0)
+
+cutoffAccel = 10
+
 while True:
     g = 9.8
     cp.pixels.brightness = 0.05
     x, y, z = cp.acceleration
     a = math.sqrt(x * x + y * y + z * z) / g
+
     if count == 0:
         t = time.monotonic() - time.monotonic()
+
+    print(a, cutoffAccel)
+
     if t < 2:
         cp.pixels.fill((255, 75, 0))
-    if t > random.randint(10, 20) and volt < 2:
+
+    if a > cutoffAccel and volt < 2:
         cp.pixels.fill((255, 255, 255))
         if a > 1.5:
             cp.pixels[1] = (255, 0, 0)
@@ -50,6 +58,10 @@ while True:
         break
     t += .1
     count += 1
+
+    r = random.randint(0, 9) / 100
+    cutoffAccel -= r if (cutoffAccel >= 1.5) else 0
+
     print(t)
-    time.sleep(.1)
+    time.sleep(.05)
 
