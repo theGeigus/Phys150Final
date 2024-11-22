@@ -26,7 +26,7 @@ while True:
 
     if t < 2:
         cp.pixels.fill((255, 75, 0))
-        
+
     if a > cutoffAccel and volt < 2:
         cp.pixels.fill((255, 255, 255))
         if a > 1.5:
@@ -59,7 +59,7 @@ while True:
     t += .1
     count += 1
 
-    r = random.randint(0, 2) / 100
+    r = random.randint(0, 9) / 100
     cutoffAccel -= r if (cutoffAccel >= 1.5) else 0
 
     print(t)
