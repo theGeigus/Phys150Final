@@ -17,8 +17,9 @@ while True:
     a = math.sqrt(x * x + y * y + z * z) / g
     if count == 0:
         t = time.monotonic() - time.monotonic()
+    if t < 2:
         cp.pixels.fill((255, 75, 0))
-    if t > random.randint(10, 20):
+    if t > random.randint(10, 20) and volt < 2:
         cp.pixels.fill((255, 255, 255))
         if a > 1.5:
             cp.pixels[1] = (255, 0, 0)
@@ -36,11 +37,19 @@ while True:
             time.sleep(0.1)
     if volt == 1:
         analog_out.value = 65535
+        volt += 1
+        print(volt)
         time.sleep(0.5)
+    if volt == 2:
+        if cp.button_a:
+            t = 0
+            volt = 0
+        else:
+            cp.pixels.fill((0, 0, 0))
+    if t > 120:
         break
     t += .1
     count += 1
-    print(a)
+    print(t)
     time.sleep(.1)
-
 
