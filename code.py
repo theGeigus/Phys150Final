@@ -49,6 +49,7 @@ while True:
         print(volt)
         time.sleep(0.5)
     if volt == 2:
+        analog_out.value = 0
         if cp.button_a:
             t = 0
             volt = 0
